@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+.registerPageWrapper {
+    background-color: #d6e6e6;
+    margin: 150px auto 0;
+    justify-content: center;
+    flex-direction: column;
+    width: 350px;
+    /*border-radius: 15px;*/
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);;
+}
+
+.registerForm h3{
+    text-align: center;
+    font-weight: lighter;
+}
+
+.registerForm hr{
+    color: #a9b5b5;
+    box-shadow: none;
+
+    margin-bottom: 25px;
+}
+
+.registerForm {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 27px;
+}
+
+.registerForm input {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    outline: none;
+    padding: 5px 0 5px 5px;
+    height: 20px;
+    margin-bottom: 20px;
+    background-color: #DFDFDF;
+    border: none;
+    border-bottom: #a9b5b5 2px solid;
+}
+
+.registerForm input:focus {
+    transition: 0.3s;
+    background-color: white;
+}
+
+.registerForm label {
+    padding-left: 10px;
+}
+
+.registerForm button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    width: 80px;
+    height: 35px;
+    background-color: #DFDFDF;
+    border-radius: 3px;
+    border: #a9b5b5 2px solid;
+    outline: none;
+}
+
+.registerForm button:hover {
+    transition: 0.3s;
+    background-color: white;
+}
+
+.registerForm button:focus {
+    transition: 0.3s;
+    background-color: white;
+}

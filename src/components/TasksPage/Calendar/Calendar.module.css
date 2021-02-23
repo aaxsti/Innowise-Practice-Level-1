@@ -1,0 +1,12 @@
+.calendarWrapper {
+    margin: 0 auto;
+
+}
+
+.calendarItem {
+    border: 1px solid black;
+    text-align: center;
+    display: inline-block;
+    width: 100px;
+    background-color: #b7a4ec;
+}

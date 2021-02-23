@@ -1,0 +1,19 @@
+.tasksPageWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+    max-width: 762px;
+    background-color: #d6e6e6;
+    margin: 150px auto 0;
+    /*border-radius: 20px;*/
+}
+
+.tasksPageWrapper h3 {
+    font-weight: lighter;
+    text-align: center;
+}
+
+.dailyTasksWrapper {
+
+}
