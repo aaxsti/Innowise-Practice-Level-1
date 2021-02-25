@@ -7,7 +7,7 @@
     flex-direction: column;
     width: 350px;
     /*border-radius: 15px;*/
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .registerForm h3{
@@ -55,7 +55,7 @@
     width: 80px;
     height: 35px;
     background-color: #DFDFDF;
-    border-radius: 3px;
+    border-radius: 2px;
     border: #a9b5b5 2px solid;
     outline: none;
 }
