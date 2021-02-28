@@ -2,14 +2,35 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     font-size: 20px;
     max-width: 762px;
     background-color: #d6e6e6;
     margin: 150px auto 0;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .taskInfoWrapper h3 {
     font-weight: lighter;
     text-align: center;
+}
+
+.taskNameBlock {
+    padding-bottom: 20px;
+}
+
+.formWrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.formElement {
+    padding-bottom: 50px;
+    width: 500px;
+}
+
+.addTaskButton {
+
 }

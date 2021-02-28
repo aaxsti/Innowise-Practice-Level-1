@@ -5,48 +5,59 @@ import DailyTasks from "./DailyTasks/DailyTasks";
 import {NavLink} from "react-router-dom";
 import {Button, FormControl, Input, InputLabel} from "@material-ui/core";
 import Todo from "./Todo";
-import db from '../../firebase';
-import firebase from "firebase";
+import app from "../../firebase";
+
 
 const TasksPage = () => {
     const [todos, setTodos] = useState([]);
-    const [input, setInput] = useState('');
+    const [hasAccount, setHasAccount] = useState(false);
+
+    app.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            setHasAccount(true);
+            console.log('Signed in');
+        } else {
+            setHasAccount(false);
+            console.log('NOT Signed in');
+        }
+    });
+
 
     // When the app loads, we need to listen to the database
     // and fetch new todos as they get added/removed
     useEffect(() => {
         // Snapshot listen database changes
+        const db = app.firestore();
         db.collection('todos')
             .orderBy('timestamp', 'desc')
             .onSnapshot(snapshot => {
                 // console.log(snapshot.docs.map((doc => doc.data())));
-                setTodos(snapshot.docs.map(doc => ({id: doc.id, todo: doc.data().todo})))
+                setTodos(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    todo: doc.data().todo,
+                    description: doc.data().description
+                })))
             });
     }, []);
 
-    const addTodo = (event) => {
-        event.preventDefault();
-        db.collection('todos').add({
-            todo: input,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        })
-        // setTodos([...todos, input]);
-        setInput('');
-    }
-
     return (
         <div className={style.tasksPageWrapper}>
-            <h3>My Tasks</h3>
+            <h3>My Tasks
+                {hasAccount
+                    ? <Button
+                        variant="outlined"
+                        onClick={() => app.auth().signOut()}>
+                        Sign out
+                    </Button>
+                    : <NavLink to='/login'>
+                        <Button variant="outlined">
+                            Sign in
+                        </Button>
+                    </NavLink>
+                }
+            </h3>
+
             <Calendar/>
-
-
-            <form>
-                <FormControl>
-                    <InputLabel>Write a Todo</InputLabel>
-                    <Input type='text' value={input} onChange={event => setInput(event.target.value)}/>
-                </FormControl>
-                <Button disabled={!input} type="submit" onClick={addTodo} variant="contained">Add todo</Button>
-            </form>
 
             {/*<DailyTasks/>*/}
 
@@ -56,9 +67,10 @@ const TasksPage = () => {
                 ))}
             </ul>
 
-            {/*<NavLink to={'/taskInfo'} className={style.addButtonWrapper}>*/}
-            {/*    <button className={style.addButton}>Add a New Task</button>*/}
-            {/*</NavLink>*/}
+            <NavLink to={'/taskinfo'} className={style.addButtonWrapper}>
+                <Button variant="contained">Add task</Button>
+            </NavLink>
+
         </div>
     );
 }

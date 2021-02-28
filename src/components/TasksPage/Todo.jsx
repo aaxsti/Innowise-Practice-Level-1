@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
-import {Button, List, ListItem, ListItemAvatar, ListItemText, Modal} from "@material-ui/core";
-import './Todo.css';
+import {Button, Checkbox, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Modal} from "@material-ui/core";
+import style from "./Todo.module.css";
 import db from './../../firebase'
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import app from "./../../firebase";
 
 const Todo = (props) => {
     const [open, setOpen] = useState(false);
+    const [checked, setChecked] = useState(0);
 
     const handleOpen = () => {
         setOpen(true);
@@ -23,17 +26,44 @@ const Todo = (props) => {
                 </div>
             </Modal>
 
-            <List className='todo-list'>
-                <ListItem>
-                    {/*<ListItemAvatar>*/}
-                    {/*</ListItemAvatar>*/}
-                    <ListItemText primary={props.todo.todo} secondary="Description"/>
-                </ListItem>
-                <button onClick={e => setOpen(true)}>Edit</button>
-                <DeleteOutlineIcon onClick={event => {
-                    db.collection('todos').doc(props.todo.id).delete()
-                }}> </DeleteOutlineIcon>
-            </List>
+            <div className={style.listBlock}>
+
+                <List dense>
+                        <ListItem>
+                            <ListItemIcon>
+                                <Checkbox
+                                    edge="start"
+
+                                    tabIndex={-1}
+                                    disableRipple
+                                    inputProps={1}
+                                />
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={props.todo.todo}
+                                secondary={props.todo.description}
+                            />
+                            <Button onClick={e => setOpen(true)}><EditIcon fontSize="medium"/></Button>
+                            <HighlightOffIcon fontSize="medium" onClick={event => {
+                                app.firestore().collection('todos').doc(props.todo.id).delete()
+                            }}> </HighlightOffIcon>
+                        </ListItem>
+                </List>
+
+            {/*<List className={style.todoList}>*/}
+            {/*    <ListItem alignItems='center'>*/}
+            {/*        /!*<ListItemAvatar>*!/*/}
+            {/*        /!*</ListItemAvatar>*!/*/}
+            {/*        <ListItemText primary={props.todo.todo} secondary={props.todo.description}/>*/}
+
+            {/*        <Button onClick={e => setOpen(true)}><EditIcon fontSize="medium"/></Button>*/}
+
+            {/*        <HighlightOffIcon fontSize="medium" onClick={event => {*/}
+            {/*            app.firestore().collection('todos').doc(props.todo.id).delete()*/}
+            {/*        }}> </HighlightOffIcon>*/}
+            {/*    </ListItem>*/}
+            {/*</List>*/}
+            </div>
         </div>
     );
 }

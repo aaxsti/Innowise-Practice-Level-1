@@ -1,12 +1,20 @@
 .calendarWrapper {
+    width: 80%;
     margin: 0 auto;
-
 }
 
 .calendarItem {
-    border: 1px solid black;
+    font-size: 16px;
+    /*border: 1px solid #81b099;*/
     text-align: center;
     display: inline-block;
     width: 100px;
-    background-color: #b7a4ec;
+    background-color: #e2e2e2;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-shadow: 0 0 0 2px #999999;
+}
+
+.calendarItem:last-child {
+    margin-right: 0;
 }

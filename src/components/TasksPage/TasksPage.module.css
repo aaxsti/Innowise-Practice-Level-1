@@ -7,7 +7,7 @@
     background-color: #d6e6e6;
     margin: 150px auto 0;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-    /*border-radius: 20px;*/
+    border-radius: 10px;
 }
 
 .tasksPageWrapper h3 {
