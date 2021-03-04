@@ -22,4 +22,5 @@ const app = firebase.initializeApp({
 // Getting database
 // const db = app.firestore();
 
+
 export default app;

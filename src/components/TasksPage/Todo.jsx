@@ -5,8 +5,10 @@ import db from './../../firebase'
 import EditIcon from '@material-ui/icons/Edit';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import app from "./../../firebase";
+import {useHistory} from "react-router";
 
 const Todo = (props) => {
+    const history = useHistory();
     const [open, setOpen] = useState(false);
     const [checked, setChecked] = useState(0);
 
@@ -43,9 +45,12 @@ const Todo = (props) => {
                                 primary={props.todo.todo}
                                 secondary={props.todo.description}
                             />
-                            <Button onClick={e => setOpen(true)}><EditIcon fontSize="medium"/></Button>
+                            <Button onClick={() => history.push('taskinfo/' + props.todo.id)}><EditIcon fontSize="medium"/></Button>
                             <HighlightOffIcon fontSize="medium" onClick={event => {
-                                app.firestore().collection('todos').doc(props.todo.id).delete()
+                                console.log(props.todo)
+                                app.firestore().collection('todos').doc(props.todo.id).delete().then(() => {
+                                    props.handleDelete(props.todo.id);
+                                })
                             }}> </HighlightOffIcon>
                         </ListItem>
                 </List>

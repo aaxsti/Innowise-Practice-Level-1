@@ -4,8 +4,9 @@
     flex-direction: column;
     font-size: 20px;
     max-width: 762px;
-    background-color: #d6e6e6;
+    background-color: #e7f1f1;
     margin: 150px auto 0;
+    border: #bac6c6 1px solid;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }

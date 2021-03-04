@@ -18,6 +18,7 @@ const Calendar = (props) => {
                 showArrows={false}
                 pagination={false}
                 itemsToScroll={3}
+                easing={"ease"}
             >
                 <CalendarItem number="1"/>
                 <CalendarItem number="2"/>
